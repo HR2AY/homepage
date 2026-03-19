@@ -3,11 +3,11 @@
 
   <head>
     <meta charset="UTF-8">
-    <title>Water effect hero</title>
+    <title>Focus - Product Homepage</title>
     <link rel="stylesheet" href="./style.css">
 
   </head>
-    
+
   <body>
   <svg id="svg-filters">
   <defs>
@@ -26,13 +26,80 @@
   <div class="loading-text">Focus is not about discipline.<br>It's about better rewards.</div>
 </div>
 
-<main class="hero" id="hero">
-  <div class="hero__content">
-    <h1 class="hero__title">Hello.</h1>
+<div class="navbar" id="navbar">
+  <div class="navbar__nav">
+    <button class="navbar__dot" data-page="0" aria-label="Page 1"></button>
+    <button class="navbar__dot" data-page="1" aria-label="Page 2"></button>
+    <button class="navbar__dot" data-page="2" aria-label="Page 3"></button>
   </div>
-</main>
+</div>
+
+<div class="pages-container" id="pages-container">
+  <!-- Page 1 -->
+  <section class="page page-1" data-page="0">
+    <div class="page__content">
+      <h1 class="page__title">你现在要做什么？</h1>
+      <button class="page__button">Focus更好带着多个维度前进</button>
+    </div>
+  </section>
+
+  <!-- Page 2 -->
+  <section class="page page-2" data-page="1">
+    <div class="page__container">
+      <div class="page__left">
+        <h2 class="page__heading">FOCUS</h2>
+        <div class="page__features">
+          <div class="feature">
+            <h3 class="feature__title">Focus Engine</h3>
+            <p class="feature__desc">追求VM、视觉创作空间与NFC Boostcast</p>
+          </div>
+          <div class="feature">
+            <h3 class="feature__title">Focus SKILL</h3>
+            <p class="feature__desc">Figma全球上榜，协作自由造就力</p>
+          </div>
+          <div class="feature">
+            <h3 class="feature__title">Focus Brands</h3>
+            <p class="feature__desc">品牌自律与适展生活，单作发展团队</p>
+          </div>
+        </div>
+      </div>
+      <div class="page__right">
+        <div class="page__images">
+          <div class="page__image-placeholder">Focus Engine</div>
+          <div class="page__image-placeholder">Focus SKILL</div>
+          <div class="page__image-placeholder">Focus Brands</div>
+        </div>
+      </div>
+    </div>
+    <div class="page__footer">
+      <div class="page__footer-text">FOCUS</div>
+      <div class="page__footer-desc">COMPANY DESCRIPTION<br>FOCUS PRODUCT</div>
+    </div>
+  </section>
+
+  <!-- Page 3 -->
+  <section class="page page-3" data-page="2">
+    <div class="page__container">
+      <div class="page__left">
+        <h2 class="page__title-secondary">Beyond the <span class="highlight">Algorithmic Veil</span></h2>
+        <p class="page__text">我们在Focus, 开采至超过的地产了气。而越过我们面貌协调管理出一个一个的云云网络并设计得透彻到在应用的范涛，而能更改学科加多方力加定全球化产品。</p>
+        <p class="page__text">而另外四个的创新区，产生太完和个体的需求，自从创作业动做到后来的仓库力，组织了多维业界的应用和协助创意企，并以具体分享获的新产业场。</p>
+        <p class="page__text">Focus 主工作的所在，建立大篇幅现现已主要主力力的。不会对用户、并具在个人新的能力，获设从别顾与系列中的能力。但许愿明前与现代且至此让感时并且与全理实质让的产品力力。</p>
+        <button class="page__button">了解更多</button>
+      </div>
+      <div class="page__right">
+        <div class="page__images">
+          <div class="page__image-placeholder">Algorithmic Veil 1</div>
+          <div class="page__image-placeholder">Algorithmic Veil 2</div>
+          <div class="page__image-placeholder">Algorithmic Veil 3</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
     <script type="module" src="./script.js"></script>
 
   </body>
-  
+
 </html>
