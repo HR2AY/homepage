@@ -404,6 +404,102 @@ class App {
   }
 }
 
+class PageManager {
+  constructor() {
+    this.currentPage = 0;
+    this.pages = document.querySelectorAll('.page');
+    this.dots = document.querySelectorAll('.navbar__dot');
+    this.container = document.getElementById('pages-container');
+
+    this.initEventListeners();
+    this.setActivePage(0);
+  }
+
+  initEventListeners() {
+    // Navigation dots
+    this.dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => this.setActivePage(index));
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') this.nextPage();
+      if (e.key === 'ArrowLeft') this.prevPage();
+    });
+
+    // Mouse wheel
+    let wheelTimeout;
+    document.addEventListener('wheel', (e) => {
+      if (wheelTimeout) return;
+
+      if (e.deltaY > 0) {
+        this.nextPage();
+      } else if (e.deltaY < 0) {
+        this.prevPage();
+      }
+
+      wheelTimeout = setTimeout(() => {
+        wheelTimeout = null;
+      }, 800);
+    });
+
+    // Touch swipe
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    document.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    });
+
+    document.addEventListener('touchend', (e) => {
+      const touchEndX = e.changedTouches[0].clientX;
+      const touchEndY = e.changedTouches[0].clientY;
+      const diffX = touchStartX - touchEndX;
+      const diffY = Math.abs(touchStartY - touchEndY);
+
+      if (Math.abs(diffX) > diffY && Math.abs(diffX) > 50) {
+        if (diffX > 0) {
+          this.nextPage();
+        } else {
+          this.prevPage();
+        }
+      }
+    });
+  }
+
+  setActivePage(index) {
+    if (index < 0 || index >= this.pages.length) return;
+
+    this.currentPage = index;
+
+    // Update pages
+    this.pages.forEach((page, i) => {
+      page.classList.remove('active');
+      if (i === index) {
+        page.classList.add('active');
+      }
+    });
+
+    // Update dots
+    this.dots.forEach((dot, i) => {
+      dot.classList.remove('active');
+      if (i === index) {
+        dot.classList.add('active');
+      }
+    });
+  }
+
+  nextPage() {
+    this.setActivePage((this.currentPage + 1) % this.pages.length);
+  }
+
+  prevPage() {
+    this.setActivePage((this.currentPage - 1 + this.pages.length) % this.pages.length);
+  }
+}
+
 window.addEventListener("DOMContentLoaded", () => {
   new App();
+  new PageManager();
 });
