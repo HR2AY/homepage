@@ -1,105 +1,144 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
-  <head>
-    <meta charset="UTF-8">
-    <title>Focus - Product Homepage</title>
-    <link rel="stylesheet" href="./style.css">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Focus - Concentration Support OS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
 
-  </head>
-
-  <body>
+<body>
   <svg id="svg-filters">
-  <defs>
-    <filter id="water-distortion" x="-20%" y="-20%" width="140%" height="140%">
-      <feTurbulence id="turbulence" baseFrequency="0.015 0.01" numOctaves="2" result="noise" />
-      <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" />
-    </filter>
-  </defs>
-</svg>
+    <defs>
+      <filter id="water-distortion" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence id="turbulence" baseFrequency="0.015 0.01" numOctaves="2" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" />
+      </filter>
+    </defs>
+  </svg>
 
-<div class="loader" id="loader">
-  <div class="progress-percentage" id="progress-percentage">0%</div>
-  <div class="progress-container">
-    <div class="progress-bar" id="progress-bar"></div>
+  <!-- Loader -->
+  <div class="loader" id="loader">
+    <div class="progress-percentage" id="progress-percentage">0%</div>
+    <div class="progress-container">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+    <div class="loading-text">Focus is not about discipline.<br>It's about better rewards.</div>
   </div>
-  <div class="loading-text">Focus is not about discipline.<br>It's about better rewards.</div>
-</div>
 
-<div class="navbar" id="navbar">
-  <div class="navbar__nav">
-    <button class="navbar__dot" data-page="0" aria-label="Page 1"></button>
-    <button class="navbar__dot" data-page="1" aria-label="Page 2"></button>
-    <button class="navbar__dot" data-page="2" aria-label="Page 3"></button>
+  <!-- Navigation Dots -->
+  <nav class="nav-dots" id="nav-dots">
+    <button class="nav-dots__dot active" data-page="0" aria-label="Page 1"></button>
+    <button class="nav-dots__dot" data-page="1" aria-label="Page 2"></button>
+    <button class="nav-dots__dot" data-page="2" aria-label="Page 3"></button>
+  </nav>
+
+  <!-- Pages -->
+  <div class="pages" id="pages">
+
+    <!-- Page 1: Hero -->
+    <section class="page page--hero active" data-page="0">
+      <div class="hero">
+        <h1 class="hero__title">你现在要做什么？</h1>
+        <button class="btn btn--primary">Focus希望打破专注力的围墙</button>
+      </div>
+    </section>
+
+    <!-- Page 2: Features -->
+    <section class="page page--features" data-page="1">
+      <div class="features">
+        <div class="features__list">
+          <!-- Feature 1 -->
+          <div class="feature-row">
+            <div class="feature-card">
+              <div class="feature-card__header">
+                <span class="feature-card__icon">⚡</span>
+                <h3 class="feature-card__title">Focus Engine</h3>
+              </div>
+              <p class="feature-card__desc">通过VLM，将屏幕内容转化为context</p>
+              <div class="feature-card__tag">BY FOCUS</div>
+            </div>
+            <div class="feature-card__image">
+              <img src="./public/feature-engine.png" alt="Focus Engine" onerror="this.style.display='none';this.parentElement.classList.add('placeholder')">
+            </div>
+          </div>
+          <!-- Feature 2 -->
+          <div class="feature-row">
+            <div class="feature-card">
+              <div class="feature-card__header">
+                <span class="feature-card__icon">📦</span>
+                <h3 class="feature-card__title">Focus SKILL</h3>
+              </div>
+              <p class="feature-card__desc">为agent送上眼睛，视觉分任务的能力</p>
+              <div class="feature-card__tag">FOCUS TTABLE.11</div>
+            </div>
+            <div class="feature-card__image">
+              <img src="./public/feature-skill.png" alt="Focus SKILL" onerror="this.style.display='none';this.parentElement.classList.add('placeholder')">
+            </div>
+          </div>
+          <!-- Feature 3 -->
+          <div class="feature-row">
+            <div class="feature-card">
+              <div class="feature-card__header">
+                <span class="feature-card__icon">✨</span>
+                <h3 class="feature-card__title">Focus Beads</h3>
+              </div>
+              <p class="feature-card__desc">族注意力量化为体质连线，专注从未管理界限</p>
+              <div class="feature-card__tag">FOCUS.AI</div>
+            </div>
+            <div class="feature-card__image">
+              <img src="./public/feature-beads.png" alt="Focus Beads" onerror="this.style.display='none';this.parentElement.classList.add('placeholder')">
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Page 2 Footer Brand -->
+      <div class="brand-footer">
+        <div class="brand-footer__name">FOCUS</div>
+        <div class="brand-footer__tagline">CONCENTRATION<br>SUPPORT OS</div>
+      </div>
+    </section>
+
+    <!-- Page 3: Story -->
+    <section class="page page--story" data-page="2">
+      <div class="story">
+        <div class="story__content">
+          <div class="story__text">
+            <h2 class="story__title">Beyond the <span class="story__highlight">Algorithmic</span> Veil</h2>
+            <p class="story__paragraph">我开始做 Focus，并不是因为缺少工具，而是逐渐意识到一个更深层的问题：在信息极度丰富的环境中，人们的注意力并不是被剥夺，而是被更高效地"奖励系统"重新分配。</p>
+            <p class="story__paragraph">短视频、悲观之所以强大，不在于内容本身，而在于它们持续提供确定且即时的反馈，让人上瘾；而学习与创造，往往因为回馈延迟和不确定，被大脑自动回避。我越来越觉得，并不是一个约束行为的工具，而是一种对"奖赏"的重新一致设计来来，让有价值的行为也能产生可感知、甚至令人上瘾的正向体验。</p>
+            <p class="story__paragraph">Focus 生态的目标，是让人重新获得对自身注意力的主动权，不是靠对抗诱惑，而是让更好的选择本身更有吸引力。</p>
+            <button class="btn btn--primary">了解更多</button>
+          </div>
+          <div class="story__images">
+            <div class="story__image-stack">
+              <img src="./public/story-1.png" alt="Story image" class="story__img story__img--1" onerror="this.style.display='none';this.parentElement.classList.add('placeholder')">
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Global Footer -->
+      <footer class="footer">
+        <div class="footer__left">
+          <span class="footer__brand">EYEGATAY</span>
+          <span class="footer__copy">&copy; 2026 AI Ecosystem Philosophy. Built for the future.</span>
+        </div>
+        <div class="footer__right">
+          <a href="#" class="footer__link">GitHub</a>
+          <a href="#" class="footer__link">Email</a>
+          <a href="#" class="footer__link">Privacy</a>
+          <a href="#" class="footer__link">Terms</a>
+        </div>
+      </footer>
+    </section>
+
   </div>
-</div>
 
-<div class="pages-container" id="pages-container">
-  <!-- Page 1 -->
-  <section class="page page-1" data-page="0">
-    <div class="page__content">
-      <h1 class="page__title">你现在要做什么？</h1>
-      <button class="page__button">Focus更好带着多个维度前进</button>
-    </div>
-  </section>
-
-  <!-- Page 2 -->
-  <section class="page page-2" data-page="1">
-    <div class="page__container">
-      <div class="page__left">
-        <h2 class="page__heading">FOCUS</h2>
-        <div class="page__features">
-          <div class="feature">
-            <h3 class="feature__title">Focus Engine</h3>
-            <p class="feature__desc">追求VM、视觉创作空间与NFC Boostcast</p>
-          </div>
-          <div class="feature">
-            <h3 class="feature__title">Focus SKILL</h3>
-            <p class="feature__desc">Figma全球上榜，协作自由造就力</p>
-          </div>
-          <div class="feature">
-            <h3 class="feature__title">Focus Brands</h3>
-            <p class="feature__desc">品牌自律与适展生活，单作发展团队</p>
-          </div>
-        </div>
-      </div>
-      <div class="page__right">
-        <div class="page__images">
-          <div class="page__image-placeholder">Focus Engine</div>
-          <div class="page__image-placeholder">Focus SKILL</div>
-          <div class="page__image-placeholder">Focus Brands</div>
-        </div>
-      </div>
-    </div>
-    <div class="page__footer">
-      <div class="page__footer-text">FOCUS</div>
-      <div class="page__footer-desc">COMPANY DESCRIPTION<br>FOCUS PRODUCT</div>
-    </div>
-  </section>
-
-  <!-- Page 3 -->
-  <section class="page page-3" data-page="2">
-    <div class="page__container">
-      <div class="page__left">
-        <h2 class="page__title-secondary">Beyond the <span class="highlight">Algorithmic Veil</span></h2>
-        <p class="page__text">我们在Focus, 开采至超过的地产了气。而越过我们面貌协调管理出一个一个的云云网络并设计得透彻到在应用的范涛，而能更改学科加多方力加定全球化产品。</p>
-        <p class="page__text">而另外四个的创新区，产生太完和个体的需求，自从创作业动做到后来的仓库力，组织了多维业界的应用和协助创意企，并以具体分享获的新产业场。</p>
-        <p class="page__text">Focus 主工作的所在，建立大篇幅现现已主要主力力的。不会对用户、并具在个人新的能力，获设从别顾与系列中的能力。但许愿明前与现代且至此让感时并且与全理实质让的产品力力。</p>
-        <button class="page__button">了解更多</button>
-      </div>
-      <div class="page__right">
-        <div class="page__images">
-          <div class="page__image-placeholder">Algorithmic Veil 1</div>
-          <div class="page__image-placeholder">Algorithmic Veil 2</div>
-          <div class="page__image-placeholder">Algorithmic Veil 3</div>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
-
-    <script type="module" src="./script.js"></script>
-
-  </body>
+  <script type="module" src="./script.js"></script>
+</body>
 
 </html>

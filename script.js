@@ -404,101 +404,76 @@ class App {
   }
 }
 
+/* ── Page Manager ─────────────────────────────────────── */
 class PageManager {
   constructor() {
     this.currentPage = 0;
+    this.totalPages = 3;
+    this.isTransitioning = false;
     this.pages = document.querySelectorAll('.page');
-    this.dots = document.querySelectorAll('.navbar__dot');
-    this.container = document.getElementById('pages-container');
+    this.dots = document.querySelectorAll('.nav-dots__dot');
 
-    this.initEventListeners();
-    this.setActivePage(0);
+    this.bindEvents();
+    this.setPage(0);
   }
 
-  initEventListeners() {
-    // Navigation dots
-    this.dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => this.setActivePage(index));
+  bindEvents() {
+    this.dots.forEach((dot) => {
+      dot.addEventListener('click', (e) => {
+        const idx = parseInt(e.currentTarget.dataset.page, 10);
+        this.setPage(idx);
+      });
     });
 
-    // Keyboard navigation
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight') this.nextPage();
-      if (e.key === 'ArrowLeft') this.prevPage();
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') this.next();
+      if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') this.prev();
     });
 
-    // Mouse wheel
-    let wheelTimeout;
+    let wheelCooldown = false;
     document.addEventListener('wheel', (e) => {
-      if (wheelTimeout) return;
+      if (wheelCooldown) return;
+      wheelCooldown = true;
+      setTimeout(() => { wheelCooldown = false; }, 900);
 
-      if (e.deltaY > 0) {
-        this.nextPage();
-      } else if (e.deltaY < 0) {
-        this.prevPage();
-      }
-
-      wheelTimeout = setTimeout(() => {
-        wheelTimeout = null;
-      }, 800);
+      if (e.deltaY > 0) this.next();
+      else if (e.deltaY < 0) this.prev();
     });
 
-    // Touch swipe
-    let touchStartX = 0;
-    let touchStartY = 0;
-
+    let touchY = 0;
     document.addEventListener('touchstart', (e) => {
-      touchStartX = e.touches[0].clientX;
-      touchStartY = e.touches[0].clientY;
+      touchY = e.touches[0].clientY;
     });
-
     document.addEventListener('touchend', (e) => {
-      const touchEndX = e.changedTouches[0].clientX;
-      const touchEndY = e.changedTouches[0].clientY;
-      const diffX = touchStartX - touchEndX;
-      const diffY = Math.abs(touchStartY - touchEndY);
-
-      if (Math.abs(diffX) > diffY && Math.abs(diffX) > 50) {
-        if (diffX > 0) {
-          this.nextPage();
-        } else {
-          this.prevPage();
-        }
+      const diff = touchY - e.changedTouches[0].clientY;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) this.next();
+        else this.prev();
       }
     });
   }
 
-  setActivePage(index) {
-    if (index < 0 || index >= this.pages.length) return;
-
-    this.currentPage = index;
-
-    // Update pages
-    this.pages.forEach((page, i) => {
-      page.classList.remove('active');
-      if (i === index) {
-        page.classList.add('active');
-      }
-    });
-
-    // Update dots
-    this.dots.forEach((dot, i) => {
-      dot.classList.remove('active');
-      if (i === index) {
-        dot.classList.add('active');
-      }
-    });
+  setPage(idx) {
+    if (idx < 0 || idx >= this.totalPages || idx === this.currentPage) return;
+    this.currentPage = idx;
+    this.pages.forEach((p, i) => p.classList.toggle('active', i === idx));
+    this.dots.forEach((d, i) => d.classList.toggle('active', i === idx));
   }
 
-  nextPage() {
-    this.setActivePage((this.currentPage + 1) % this.pages.length);
+  next() {
+    if (this.currentPage < this.totalPages - 1) {
+      this.setPage(this.currentPage + 1);
+    }
   }
 
-  prevPage() {
-    this.setActivePage((this.currentPage - 1 + this.pages.length) % this.pages.length);
+  prev() {
+    if (this.currentPage > 0) {
+      this.setPage(this.currentPage - 1);
+    }
   }
 }
 
+/* ── Bootstrap ────────────────────────────────────────── */
 window.addEventListener("DOMContentLoaded", () => {
   new App();
   new PageManager();
