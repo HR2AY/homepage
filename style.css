@@ -230,7 +230,7 @@ canvas {
 }
 
 .feature-card {
-  background: rgba(255, 248, 230, 0.35);
+  background: rgba(255, 248, 230, 0.70);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(200, 175, 130, 0.2);
@@ -282,6 +282,12 @@ canvas {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(200, 175, 130, 0.15);
+}
+
+.feature-card__image a {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .feature-card__image img {
@@ -347,8 +353,8 @@ canvas {
 
 .story__content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 40px;
   align-items: center;
 }
 
@@ -371,6 +377,15 @@ canvas {
   margin-bottom: 1.2rem;
 }
 
+.story__text {
+  background: rgba(255, 248, 230, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(200, 175, 130, 0.2);
+  border-radius: 12px;
+  padding: 28px 32px;
+}
+
 .story__text .btn {
   margin-top: 0.8rem;
 }
@@ -383,8 +398,8 @@ canvas {
 
 .story__image-stack {
   position: relative;
-  width: 300px;
-  height: 380px;
+  width: 260px;
+  height: 340px;
 }
 
 .story__image-stack.placeholder {
@@ -500,8 +515,8 @@ canvas {
   }
 
   .story__image-stack {
-    width: 220px;
-    height: 280px;
+    width: 200px;
+    height: 260px;
   }
 
   .brand-footer {
